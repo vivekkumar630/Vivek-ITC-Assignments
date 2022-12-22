@@ -1,37 +1,37 @@
-print("Enter date in following order")
-
-d=int(input("enter date "))
-
-m=int(input("enter month "))
-
-y=int(input("enter year "))
-
-
-mo=[1,3,5,7,8,10,12]
-if m in mo:
-        mod=31 
-         
-if m==2 and y%4!=0:
-        mod=28
-        print(d<28)
-if m not in mo:
-        mod=30
-        print(d<30)
-if m==2 and y%4== 0:
-        mod=29
-        print(d<29)
-    
-
-if d> 31 or d<1:
-    print("invalid date")
-elif m> 12 or m<1:
-    print("invalid month")
-elif y> 2025 or y<1880:
-    print("year not available")
-if d==31 and m==12:
-    print("1 1 ",y+1)   
+ a=int(input("Enter Date[1-31]:"))
+b=int(input("Enter Month[1-12]:"))
+c=int(input("Enter Year[1800-2025]"))
+if a>31:
+    print("Error input correct date")
+    exit()
+#seeing if input year is a leap year or not
+if (c%4==0):
+    leapyear=True
 else:
-    v=(d+1)%mod 
-    w=(((d+1)//mod)+m)%12
-    x=(v//12)+y
-    print(v,w,x)
+    leapyear=False
+#defining month lengths
+if b in [1,3,5,7,8,10,12]:
+    monthlength=31
+elif b in [4,6,9,11]:
+    monthlength=30
+if b==2:
+    if leapyear:
+        monthlength=29
+    else:
+        monthlength=28
+
+if a>monthlength:
+    print("Error please input a correct date")
+    exit()
+#adding a day
+if a<monthlength:
+    a=a+1
+else:
+    a=1
+    if b==12:
+        b=1
+        c=c+1
+    else:
+        b=b+1
+
+print("The Next date will be",a,"/",b,"/",c)
